@@ -1,22 +1,19 @@
 "use client";
-// @ts-ignore
-import CoolBackground from "@/components/ui/CoolBackground";
+
 import React, { useState, useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
+// no more useSearchParams
 import { SidebarProvider } from "@/components/sidebar/contexts/sidebar-context";
 import { ThemeProvider } from "@/components/sidebar/contexts/theme-context";
 import { AppSidebar } from "@/components/AppSidebar";
 import "@/app/globals.css";
 
-export default function ChatClient() {
+export default function ChatClient({ chatId }) {
   const [message, setMessage] = useState('');
   const [replies, setReplies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [chatName, setChatName] = useState("");
   const [showInput, setShowInput] = useState(false);
   const chatEndRef = useRef(null);
-  const searchParams = useSearchParams();
-  const chatId = searchParams.get("chatId");
 
   useEffect(() => {
     const loadChat = async () => {
